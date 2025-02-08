@@ -2,8 +2,13 @@ version: '3.1'
 
 services:
   webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
     extends:
       service: app
     command: make dev
     ports:
       - "0.0.0.0:8080:8080"
+    volumes:
+      - ./app:/app
