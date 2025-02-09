@@ -1,12 +1,9 @@
----
-
 services:
   webapp:
     build:
       context: .
       dockerfile: Dockerfile
     extends:
-      file: docker-compose.yml
       service: app
     command: make dev
     ports:
