@@ -7,24 +7,24 @@ env:
   APP_IMAGE_NAME: devops-for-programmers-project-74  
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
+  # test:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
 
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: '20.x'
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+  #     - name: Set up Docker Buildx
+  #       uses: docker/setup-buildx-action@v1
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+  #     - name: Set up QEMU
+  #       uses: docker/setup-qemu-action@v1
 
-      - name: Run Tests
-        run: make ci
+  #     - name: Run Tests
+  #       run: make ci
 
   docker:
     runs-on: ubuntu-latest
@@ -40,6 +40,9 @@ jobs:
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+
+      - name: Run tests using Docker Compose
+        run: docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
 
       - name: Build and push
         uses: docker/build-push-action@v6
