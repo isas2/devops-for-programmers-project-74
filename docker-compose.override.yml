@@ -1,4 +1,4 @@
-version: '3.1'
+---
 
 services:
   webapp:
@@ -6,6 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     extends:
+      file: docker-compose.yml
       service: app
     command: make dev
     ports:
