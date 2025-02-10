@@ -16,7 +16,7 @@ services:
     command: make test
 
   db:
-    image: postgres
+    image: postgres:17.2
     restart: always
     environment:
       POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
